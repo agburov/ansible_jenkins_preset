@@ -44,14 +44,14 @@ Copy all the necessary information from the Ansible debug output
 ```
 **Run Jenkins in a browser**
 ```
-YOUR_IP4_ADDRESS:8080
+The Ansible debug message has all the information you need
 ```
 **Finish Jenkins setup**
 ```
 Select "Install suggested plugins", you will see some red flags, everything is ok, click Continue
 ```
 ```
-Create your user, click Save and Continue, then Save and Finish, then Restart.
+Create your user, click Save and Continue, then Save and Finish, then Restart
 ```
 ```
 Refresh your browser screen (F5 or Command+R). Done!
