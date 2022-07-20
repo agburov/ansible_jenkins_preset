@@ -63,9 +63,35 @@
       url_password: "{{ jenkins_first_pass.stdout }}"
       url: 'http://{{ ipify_public_ip }}:8080'
       timeout: 90
+      state: latest
+      with_dependencies: yes
     with_items:
       - docker-workflow
       - aws-credentials
       - amazon-ecr
       - blueocean
       - terraform
+
+  - name: Initiate the Jenkins restart fact
+    set_fact:
+      jenkins_restart_required: yes
+
+  - name: Restart Jenkins after installing the plugins
+    service:
+      name: jenkins
+      state: restarted
+    when: jenkins_restart_required
+
+  - name: Waiting for Jenkins to start and entering a temporary password
+    uri:
+      url: 'http://{{ ipify_public_ip }}:8080'
+      status_code: 403
+      timeout: 1
+    register: jenkins_service_status
+    # Keep trying for 2 mins in 4 sec intervals
+    retries: 30
+    delay: 4
+    until: >
+       'status' in jenkins_service_status and
+       jenkins_service_status['status'] == 403
+    when: jenkins_restart_required

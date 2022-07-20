@@ -43,6 +43,7 @@ build {
 
   provisioner "shell" {
     inline = [
+      "sudo yum update -y",
       "sudo yum install -y git",
       "sudo amazon-linux-extras install docker -y",
       "sudo service docker start",

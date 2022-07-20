@@ -10,7 +10,7 @@ packer build jenkins.pkr.hcl
 Use the AWS Management Console to create an EC2 instance
 ```
 ---
-**Create the required AWS key pair**
+**OPTIONAL: Generate the required AWS key pair if you wish to connect to the host via SSH**
 ```
 Create a new AWS key pair while installing EC2 instance
 ```
@@ -21,12 +21,15 @@ Give this key a name "sec_key"
 Check 'RSA' and '.pem' type options
 ```
 ```
+Create an SG to allow incoming traffic from TCP 22 and 8080 ports from anywhere (for testing purposes only)
+```
+```
 chmod 0600 sec_key.pem
 ```
 ```
-Copy this key to ~/.ssh/ on the main host
+Copy this key to ~/.ssh/ of your master host
 ```
-**Modification of inventory file**
+**Edit inventory file**
 ```
 Copy public IP4 address from running EC2 instance
 ```
@@ -48,11 +51,8 @@ The Ansible debug message has all the information you need
 ```
 **Finish Jenkins setup**
 ```
-Select "Install suggested plugins", you will see some red flags, everything is ok, click Continue
+Select "Install suggested plugins", then click Continue
 ```
 ```
-Create your user, click Save and Continue, then Save and Finish, then Restart
-```
-```
-Refresh your browser screen (F5 or Command+R). Done!
+Create your user, click Save and Continue, then Save and Finish. Done!
 ```
