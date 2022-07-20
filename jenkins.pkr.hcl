@@ -8,22 +8,22 @@ packer {
 }
 
 variable "aws_access_key" {
-  type = string
+  type    = string
   default = "${env("AWS_ACCESS_KEY_ID")}"
 }
 
 variable "aws_secret_key" {
-  type = string
+  type    = string
   default = "${env("AWS_SECRET_ACCESS_KEY")}"
 }
 
 source "amazon-ebs" "jenkins" {
-  access_key           = "${var.aws_access_key}"
-  secret_key           = "${var.aws_secret_key}"
-  ssh_username         = "ec2-user"
-  ami_name             = "jenkins-server_{{timestamp}}"
-  instance_type        = "t2.micro"
-  region               = "us-east-1"
+  access_key    = "${var.aws_access_key}"
+  secret_key    = "${var.aws_secret_key}"
+  ssh_username  = "ec2-user"
+  ami_name      = "jenkins-server_{{timestamp}}"
+  instance_type = "t2.micro"
+  region        = "us-east-1"
   source_ami_filter {
     filters = {
       name                = "amzn2-ami-hvm-*-x86_64-ebs"
