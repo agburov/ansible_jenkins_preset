@@ -20,8 +20,12 @@ Give this key a name "sec_key"
 ```
 Check 'RSA' and '.pem' type options
 ```
+**For testing purposes only, create an SG and allow traffic from anywhere!**
 ```
-Create an SG to allow incoming traffic from TCP 22 and 8080 ports from anywhere (for testing purposes only)
+Allow incoming traffic from port 22 and 8080
+```
+```
+Allow outgoing traffic from all TCP ports
 ```
 ```
 chmod 0600 sec_key.pem
