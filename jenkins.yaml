@@ -69,6 +69,7 @@
       - docker-workflow
       - aws-credentials
       - amazon-ecr
+      - ansicolor
       - blueocean
       - terraform
 
